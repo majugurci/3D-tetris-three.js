@@ -10,9 +10,9 @@ From the original I have added these features:
   - Selectable board size (3 sizes)
   - Increasing game speed as time passes
   - Option to pause game
-  - Changed block appearence so it's now transparent
+  - Changed block appearance so it's now transparent
   - Changed background to dark theme
-  - View box where you can see next piece (which is webGL piece, so there are two sepparate webGL pieces)
-  - View box where you can see position of the heighest piece (which are images manipulated throug JS and CSS)
+  - View box where you can see next piece (which is webGL piece, so there are two separate webGL pieces)
+  - View box where you can see position of the highest piece (which are images manipulated throug JS and CSS)
 
 This was my first encounter with 3D graphics in web and I have learned a lot through working on it.
