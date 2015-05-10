@@ -1,0 +1,464 @@
+<!DOCTYPE HTML>
+<!--
+	Affinity by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+    <title>3D Tetris</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <noscript>
+        <link rel="stylesheet" href="css/5grid/core.css"/>
+        <link rel="stylesheet" href="css/5grid/core-desktop.css"/>
+        <link rel="stylesheet" href="css/5grid/core-1200px.css"/>
+        <link rel="stylesheet" href="css/5grid/core-noscript.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/style-desktop.css"/>
+    </noscript>
+
+    <script type="text/javascript" src="js/shCore.js"></script>
+    <script type="text/javascript" src="js/shBrushJScript.js"></script>
+    <link href="css/shCore.css" rel="stylesheet" type="text/css"/>
+    <link href="css/shThemeDefault.css" rel="stylesheet" type="text/css"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
+    <!--[if IE 9]>
+    <link rel="stylesheet" href="css/style-ie9.css"/><![endif]-->
+</head>
+<body>
+<div id="wrapper">
+    <div id="header-wrapper">
+        <header id="header">
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="12u" id="logo"> <!-- Logo -->
+                        <h1><a href="#" class="mobileUI-site-name">3D Tetris</a></h1>
+
+                        <h2>Mario Jugurcic</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="12u" id="menu">
+                        <div id="menu-wrapper">
+                            <nav class="mobileUI-site-nav">
+                                <ul>
+                                    <li><a href="index.html">Početna</a></li>
+                                    <li class="current_page_item"><a href="izradaProjekta.html">Izrada projekta</a></li>
+                                    <li><a href="kratkeUpute.html">Kratke upute</a></li>
+                                    <li><a href="zaigrajTetris.html">Zaigraj 3D Tetris</a></li>
+                                    <li><a href="dokumentacija.html">Dokumentacija</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+    <div id="page-wrapper" class="5grid-layout">
+        <div class="5grid-layout">
+            <div class="row">
+                <div class="12u">
+                    <div id="banner"><a href="#"><img src="images/pic01.jpg" alt=""></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="content">
+            <div class="12u">
+                <section>
+                    <div class="post">
+                        <h2>Izrada projekta</h2>
+
+                        <p>Inicijalno projekt je trebao biti realiziran u WebGl-u no na kraju je napravljen u three.js.
+                            Three.js je javascript biblioteka bazirana na WebGL-u koja podosta olakšava rad s grafikom
+                            i daje cijeli jedan sloj apstrakcije.</p>
+
+                        <p>&nbsp;</p>
+
+                        <p>Dakle tehnologije koje su korištene u izradi projekta su: three.js, javascript, jquery,
+                            html i css.</p>
+
+                        <p>&nbsp;</p>
+
+                        <p>Realizacija ovog projekta nije bilo tako lagan zadatak kako sam zamišljao u početku.
+                            Susreo sam se s nekoliko problema koje ću ovdje ukratko objasniti. Prvi problem bio je sami
+                            three.js. Ne toliko sam jezik, koji je inače vrlo intuitivan i sličan openGL-u, već podrška
+                            pri
+                            korištenju. Dokumentacija postoji ali je vrlo štura i nije još potpuna. Većinu stvari koje
+                            sam
+                            naučio bile su iz primjera drugih radova i iz samih primjera napisanih u three.js. Drugi
+                            problem
+                            s three.js-om je velik broj izdanja (revizija). Prvo izdanje three.js-a izdano je 2010.
+                            godine, a do
+                            danas je vani već 70-to izdanje po redu. Projekt je relativno nov i to samo po sebi nije
+                            problem
+                            ali dosta funkcija je mjenjalo svoj naziv i svoju funkcionalnost tako da je velika šansa ako
+                            želite na svoj projekt staviti novije izdanje, a pisano je u starijem, projekt neće raditi
+                            bez
+                            preinaka. Naravno novije funkcije nisu ni tako dobro dokumentirane pa će se s nekima trebati
+                            pomučiti kako bi se skužilo kako rade. Drugi problemi bili su vezani uz samu igru, kako
+                            nešto
+                            napraviti da radi. U idućim dijelovima opisati ću implementaciju i spomenuti na koje
+                            probleme
+                            i izazove sam naišao.</p>
+
+                        <p>&nbsp;</p>
+
+                        <p>Trenutno je projekt razdjeljen u 3 .js skripte. U jednoj se nalazi glavna logika programa,
+                            u drugoj se nalaze funkcije za rad s dijelovima (tetris dijelovi), a u trećoj se nalaze
+                            funckije za provjeru popunjenosti ploče i kontrolni mehanizam. Budući da se izvorni kod može
+                            skinuti ovdje ću isprepleteno objasniti sve 3 skripte.</p>
+
+                        <p>&nbsp;</p>
+
+                        <p>Program započinje u skripti tetris.js. Budući da se funkcije iz jedne skripte moraju moći
+                            pozivati i iz druge, te zajedno koristiti iste podatke najjednostavnije je bilo napraviti
+                            globalnu varijablu povezanu na window objekt. Postoje 2 takve varijable. "Tetris" se koristi
+                            za podatke o igri i služi za spremanje podataka o centralnom dijelu igre (glavni prikaz gdje
+                            se tetris igra), a "Tetris2" služi za podatke o malom prikazu sa strane gdje se prikazuje
+                            idući tetris dio.s
+                        </p>
+
+                        <pre class="brush: js">
+                            window.Tetris = window.Tetris || {};
+                            window.Tetris2 = window.Tetris2 || {};
+                        </pre><p>&nbsp;</p>
+                        <p>Prvo što se pokreće je "init" funkcija. U sljedećem kodu prikazani su samo bitniji dijelovi.
+                        Kod bi trebao biti jasan sam po sebi uz komentare. Evo samo nekoliko napomena. Stvaraju se
+                        renderer, camera i scene objekti. Renderer objekt služi za stvaranje scene i prima objekte tipa
+                        camera i scene. Atribut "camera.position.z = 800" služi kako bi prikaz slike udaljili od
+                        promatrača. Three.js nudi gotov DOM element koji se samo doda postojećoj web stranici.
+                        U igri zidovi koji simuliraju okruženje tetrisa zapravo su unutarnje strane kocke, a gornja
+                        strana kocke se ne vidi zbog pozicije kamere. Stvara se novi objekt boxConfig koji sadrži podatke
+                        o veličini te kocke. Funkcija setTerrain inicijalno postavlja teren na veličinu 6x6 kako bi
+                        se korisniku moglo nešto prikazati.</p>
+                        <pre class="brush: js">
+                            function init() {
+                                // width and height of div containing tetris game
+                                var WIDTH = threeContainer.width(),
+                                    HEIGHT = $(window).height() - 100;
+
+                                // camera
+                                var VIEW_ANGLE = 45,
+                                    ASPECT = WIDTH / HEIGHT,
+                                    NEAR = 0.1,
+                                    FAR = 10000;
+
+                                // creating the main canvas object
+                                Tetris.renderer = new THREE.WebGLRenderer();
+                                Tetris.camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+                                Tetris.scene = new THREE.Scene();
+
+                                Tetris.camera.position.z = 800;
+                                Tetris.scene.add(Tetris.camera);
+
+                                Tetris.renderer.setSize(WIDTH, HEIGHT);
+
+                                // attach the render-supplied DOM element
+                                threeContainer.append(Tetris.renderer.domElement);
+
+                                var BC = new boxConfig();
+                                setTerrain(BC);
+                            };
+                        </pre><p>&nbsp;</p>
+                        <p>Prije spomenuta funkcija setTerrain služi kako bi na temelju pruženoj joj paramtera o veliči
+                        kocke izgradila tu kocku i postavila ju u scenu. U ovoj funkciji se prvi put srećemo s funckijama
+                        iz three.js biblioteke. Atribut "blockSize" služi kako bi se postavila dužina stranice malih
+                        kocaka od kojih je sastavljen jedan tetris dio. U varijablu "texture1" učitava se tekstura iz
+                        slike, a po završetku učitavanja poziva se funkcija koja osvježava sadržaj scene (jer je
+                        učitavanje asinkroni zadatak). Iduće se postavlja način na koji tekstura omotava stranicu kocke,
+                        te na poslijetku poziva se metoda "getMaxAnisotropy()" koja vraća najveći broj koji GPU može
+                        izvršiti. Inače "anisotropy" atribut što je veći to će slika kad se skalira biti manje mutna.
+                        Ovaj postupak se ponavlja za sve 3 teksture (za svaki par stranica po jedna). Razlog je
+                        drugačija orijentacija i smjer stranica. Zatim se u polje "materials" stvaraju novi materijali
+                        na temelju tih tekstura i postavlja se culling na BackSide tako da prednje poligone odbacujemo,
+                        a zadnje prikazujemo. Razlog ovome je što se cijela igra tetrisa odvija u velikoj kocki stvorenoj
+                        od 6 strana kojima upravo dodjeljujemo materijale. Sa funkcijom Mesh stvaramo novi objekt, prvi
+                        parametar prima nacrt objekta, u našem slučaju kocke. Drugi parametar prosljeđuje materijale za
+                        prvi parametar. Te na poslijetku dodajemo taj stvoreni objekt u scenu.</p>
+                        <pre class="brush: js">
+                            function setTerrain(BC) {
+                                Tetris.boundingBoxConfig = BC;
+                                Tetris.blockSize = BC.width / BC.splitX;
+
+                                var texture1 = THREE.ImageUtils.loadTexture('images/plocica.png', {}, function () {
+                                    Tetris.renderer.render(Tetris.scene, Tetris.camera);
+                                });
+
+                                ...
+
+                                texture1.wrapS = texture1.wrapT = THREE.RepeatWrapping;
+                                texture1.repeat.set(BC.splitX, BC.splitX);
+                                texture1.needsUpdate = true;
+
+                                ...
+
+                                texture1.anisotropy = Tetris.renderer.getMaxAnisotropy();
+
+                                ...
+
+                                var materials = [
+                                    new THREE.MeshBasicMaterial({map: texture3, side: THREE.BackSide}),
+                                    new THREE.MeshBasicMaterial({map: texture3, side: THREE.BackSide}),
+                                    new THREE.MeshBasicMaterial({map: texture2, side: THREE.BackSide}),
+                                    new THREE.MeshBasicMaterial({map: texture2, side: THREE.BackSide}),
+                                    new THREE.MeshBasicMaterial({map: texture1, side: THREE.BackSide}),
+                                    new THREE.MeshBasicMaterial({map: texture1, side: THREE.BackSide})
+
+                                ];
+
+                                var boundingBox = new THREE.Mesh(
+                                    new THREE.BoxGeometry(BC.width, BC.height, BC.depth, BC.splitX, BC.splitY, BC.splitZ),
+                                    new THREE.MeshFaceMaterial(materials)
+                                );
+
+                                Tetris.scene.add(boundingBox);
+                                Tetris.boundingBox = boundingBox;
+                            }
+                        </pre><p>&nbsp;</p>
+                        <p>S time smo spremni započeti igru i sve potrebne stvari su inicijalizirane. Sada čekamo
+                        korisnikov unos o veličini terena i klik na play dugme. Sljedeća metoda obrađuje taj zahtjev.
+                        Ovdje nam je samo bitno pročitati korisnikov unos o veličini terena te obrisati stari (inicijalno
+                        stvoren) i napraviti novi.</p>
+                        <pre class="brush: js">
+                            function start() {
+                                var number = $('input:radio[name=boardSize]:checked').val();
+                                // if input is not equal to default 6 create new terain
+                                if (number != 6) {
+                                    Tetris.scene.remove(Tetris.boundingBox);
+                                    var BC = new boxConfig(number * 60, number * 60, null, number, number, null);
+                                    setTerrain(BC);
+                                }
+                            };
+                        </pre><p>&nbsp;</p>
+                        <p>Zatim se pokreće "animate" metoda koja zapravo simulira igru. Metoda svaki put samu sebe poziva
+                        s metodom "requestAnimationFrame" a provjerava je li prošlo dovoljno vremena od zadnjeg puta
+                        (postavljeno na 1 sekundu) te ako je spušta tetris dio za jedan redak niže tako što poziva
+                        metodu iz tetris.block skripte.</p>
+                        <pre class="brush: js">
+                            function animate() {
+                                if (!Tetris.pause) {
+                                    var time = Date.now();
+                                    Tetris.frameTime = time - Tetris._lastFrameTime;
+                                    Tetris._lastFrameTime = time;
+                                    Tetris.cumulatedFrameTime += Tetris.frameTime;
+
+                                    while (Tetris.cumulatedFrameTime > Tetris.gameStepTime) {
+                                        Tetris.cumulatedFrameTime = 0;
+                                        Tetris.Block.move(0, 0, -1);
+                                    }
+
+                                    Tetris.renderer.render(Tetris.scene, Tetris.camera);
+                                }
+                                if (!Tetris.gameOver) window.requestAnimationFrame(animate);
+                            };
+                        </pre><p>&nbsp;</p>
+                        <p>Sada smo otprilike pokrili osnovu igre, odnosno glavne korake. U tetris skripti nalaze se još
+                        funckije za obradu korisničkog unosa (kontrole za pomicanje i rotaciju), metoda za inicijalno
+                        postavljanje desne statusne trake za visinu najvećeg tetris dijela te nama zanimljvia metoda
+                        "addStaticBlock". Kako bi objasnili ovu metodu moramo objasniti pozadinsku logiku programa.
+                        Kada se jedan tetris dio kreira on se stvara iz manjih dijelova koji se spoje u veći i tako
+                        dobijemo prikaz jednog tetris dijela. Nakon što taj dio dosegne dno najlakši način da ga dalje
+                        koristimo je da ga rastavimo na manje kockice i tako olakšamo njegovu manipulaciju. Upravo ova
+                        metoda nam omogućava rastavljanje bloka na manje dijelove. Metodu pozivamo onoliko puta koliko
+                        kockica ima jedan dio tetrisa te svaku kockicu posebno dodajemo na ploču.</p>
+                        <pre class="brush: js">
+                            Tetris.addStaticBlock = function (x, y, z) {
+                                var mesh = new THREE.Mesh(new THREE.BoxGeometry(Tetris.blockSize, Tetris.blockSize, Tetris.blockSize),
+                                    new THREE.MeshBasicMaterial({color: Tetris.zColors[z]})
+                                )
+
+                                mesh.position.x = (x - Tetris.boundingBoxConfig.splitX / 2) * Tetris.blockSize + Tetris.blockSize / 2;
+                                mesh.position.y = (y - Tetris.boundingBoxConfig.splitY / 2) * Tetris.blockSize + Tetris.blockSize / 2;
+                                mesh.position.z = (z - Tetris.boundingBoxConfig.splitZ / 2) * Tetris.blockSize + Tetris.blockSize / 2;
+
+                                Tetris.scene.add(mesh);
+                                Tetris.staticBlocks[x][y][z] = mesh;
+
+                                var edge = new THREE.EdgesHelper(mesh, 0x000000);
+                                edge.material.linewidth = 2;
+
+                                Tetris.scene.add(edge);
+                                Tetris.staticBlocksEdges[x][y][z] = edge;
+                            };
+                        </pre><p>&nbsp;</p>
+                        <p>Sada možemo prijeći na skriptu tetris.block. U njoj je važno reći da su svi mogući tetris
+                        oblici stavljeni u jedno polje. Oblik je sastavljen od nekoliko kockica, a svaka kockica je
+                        reprezentirana svojim kooridnatama koje predstavljaju udaljenost od ishodišta.</p>
+                        <pre class="brush: js">
+                            Tetris.Block.shapes = [
+                                [
+                                    {x:0, y:0, z:0},
+                                    {x:1, y:0, z:0},
+                                    {x:1, y:1, z:0},
+                                    {x:1, y:2, z:0}
+                                ],
+                                [
+                                    {x:0, y:0, z:0},
+                                    {x:0, y:1, z:0},
+                                    {x:0, y:2, z:0},
+                                ],
+                                [
+                                    {x:0, y:0, z:0},
+                                    {x:0, y:1, z:0},
+                                    {x:1, y:0, z:0},
+                                    {x:1, y:1, z:0}
+                                ],
+                                [
+                                    {x:0, y:0, z:0},
+                                    {x:0, y:1, z:0},
+                                    {x:0, y:2, z:0},
+                                    {x:1, y:1, z:0}
+                                ],
+                                [
+                                    {x:0, y:0, z:0},
+                                    {x:0, y:1, z:0},
+                                    {x:1, y:1, z:0},
+                                    {x:1, y:2, z:0}
+                                ]
+                            ];
+                        </pre><p>&nbsp;</p>
+                        <p>Jedna od bitnih metoda je "generateCurrent". Ova metoda nasumično bira jedan od oblika te ga
+                        stvara, postavlja na scenu i sprema u Tetris objekt za daljnje korištenje. Ovdje je metoda
+                        prikazana u najkraćem obliku. Dakle stvara se jedan objekt kojeg smo nazvali "piece". Zatim se
+                        svaka kockica od odabranog tetris dijela pripaja tom piece dijelu kroz for petlju i na kraju taj
+                        piece dio je ono što vidimo u igri kada se generira novi element. Na kraju mu dodajemo materijal
+                        i stavljamo ga u scenu.</p>
+                        <pre class="brush: js">
+                            Tetris.Block.generateCurrent = function () {
+
+                            var piece = new THREE.Geometry();
+                            geometry = new THREE.BoxGeometry(Tetris.blockSize, Tetris.blockSize, Tetris.blockSize);
+                            piece.merge(geometry, geometry.matrix);
+                            for (i = 1; i < Tetris.Block.shape.length; i++) {
+                                tmpGeometry = new THREE.Mesh(new THREE.BoxGeometry(Tetris.blockSize, Tetris.blockSize, Tetris.blockSize));
+                                tmpGeometry.position.x = Tetris.blockSize * Tetris.Block.shape[i].x;
+                                tmpGeometry.position.y = Tetris.blockSize * Tetris.Block.shape[i].y;
+                                tmpGeometry.updateMatrix();
+                                piece.merge(tmpGeometry.geometry, tmpGeometry.matrix);
+                            }
+
+                            Tetris.Block.mesh = new THREE.Mesh(piece,
+                                new THREE.MeshBasicMaterial({color:0xffffff, transparent:true, opacity:0.2, side: THREE.DoubleSide})
+                            );
+
+                            Tetris.scene.add(Tetris.Block.mesh);
+                        };
+                        </pre><p>&nbsp;</p>
+                        <p>Na isti način se generira i idući blok koji se prikazuje u gornjem desnom kutu i sprema se
+                        njegov oblik kako bi se u idućem potezu pustio u igru.</p>
+                        <p>&nbsp;</p>
+                        <p>Zatim imamo rotate metodu koja rotira jedan tetris dio. Ona je zanimljiva jer moramo
+                        spremiti matricu rotacije oblika kako bi kasnije kada dio dotakne dno znali ispravno spremiti
+                        njegovu poziciju. Na sličan način radi i "move" metoda koja pomjera blok po horizontalnoj liniji.</p>
+                        <pre class="brush: js">
+                            Tetris.Block.rotate = function (x, y, z) {
+                                Tetris.Block.mesh.rotation.x += x * Math.PI / 180;
+                                Tetris.Block.mesh.rotation.y += y * Math.PI / 180;
+                                Tetris.Block.mesh.rotation.z += z * Math.PI / 180;
+
+                                var rotationMatrix = new THREE.Matrix4();
+
+                                rotationMatrix.makeRotationFromEuler(Tetris.Block.mesh.rotation);
+
+                                for (var i = 0; i < Tetris.Block.shape.length; i++) {
+                                    var vector = Tetris.Block.shapes[this.blockType][i];
+                                    Tetris.Block.shape[i] = new THREE.Vector3(vector.x, vector.y, vector.z);
+                                    Tetris.Block.shape[i].applyProjection(rotationMatrix);
+                                    Tetris.Utils.roundVector(Tetris.Block.shape[i]);
+                                }
+
+                                if (Tetris.Board.testCollision(false) === Tetris.Board.COLLISION.WALL) {
+                                    Tetris.Block.rotate(-x, -y, -z);
+                                }
+                            };
+                        </pre><p>&nbsp;</p>
+                        <p>Te imamo "petrify" metodu koja se poziva nakon što tetris dio dotakne dno. Ona je zaslužna za
+                        rastavljanje tog dijela na manje kockice i pozivanje prethodne metode ("addStaticBlock") koja ih
+                        dodaje na scenu. Također poziva i metodu iz naše treće skripte kako bi javila da je pojedino mjesto na ploči zauzeto.</p>
+                        <pre class="brush: js">
+                            Tetris.Block.petrify = function () {
+                                var shape = Tetris.Block.shape;
+                                for (var i = 0; i < shape.length; i++) {
+                                    Tetris.addStaticBlock(Tetris.Block.position.x + shape[i].x, Tetris.Block.position.y + shape[i].y, Tetris.Block.position.z + shape[i].z);
+                                    Tetris.Board.fields[Tetris.Block.position.x + shape[i].x][Tetris.Block.position.y + shape[i].y][Tetris.Block.position.z + shape[i].z] = Tetris.Board.FIELD.PETRIFIED;
+                                }
+                            };
+                        </pre><p>&nbsp;</p>
+                        <p>U posljednjoj skripti, "tetris.board", imamo funkcije koje se odnose na pozicije na samoj
+                        ploči za igru. One nam služe da znamo koja pozicija na ploči je zauzeta te za razne provjere.
+                        Prva metoda je "init" metoda koju pozivamo na početku programa i sve što ona radi je da svako
+                        mjesto na ploči označava kao slobodno.</p>
+                        <pre class="brush: js">
+                            Tetris.Board.init = function (_x, _y, _z) {
+                                Tetris.Board.fields = [];
+                                for (var x = 0; x < _x; x++) {
+                                    Tetris.Board.fields[x] = [];
+                                    for (var y = 0; y < _y; y++) {
+                                        Tetris.Board.fields[x][y] = [];
+                                        for (var z = 0; z < _z; z++) {
+                                            Tetris.Board.fields[x][y][z] = Tetris.Board.FIELD.EMPTY;
+                                        }
+                                    }
+                                }
+                            };
+                        </pre><p>&nbsp;</p>
+                        <p>Iduća metoda provjerava postoje li kolizije imeđu tetris dijela i vanjskih rubova ploče, između
+                        dijela i drugih postavljenih dijelova i između dijela i poda ploče. </p>
+                        <pre class="brush: js">
+                            Tetris.Board.testCollision = function (ground_check) {
+                                var x, y, z, i;
+
+                                var fields = Tetris.Board.fields;
+                                var posx = Tetris.Block.position.x, posy = Tetris.Block.position.y, posz = Tetris.Block.position.z, shape = Tetris.Block.shape;
+
+                                for (i = 0; i < shape.length; i++) {
+                                    if ((shape[i].x + posx) < 0 || (shape[i].y + posy) < 0 || (shape[i].x + posx) >= fields.length || (shape[i].y + posy) >= fields[0].length) {
+                                        return Tetris.Board.COLLISION.WALL;
+                                    }
+
+                                    if (fields[shape[i].x + posx][shape[i].y + posy][shape[i].z + posz - 1] === Tetris.Board.FIELD.PETRIFIED) {
+                                        return ground_check ? Tetris.Board.COLLISION.GROUND : Tetris.Board.COLLISION.WALL;
+                                    }
+
+                                    if((shape[i].z + posz) <= 0) {
+                                        return Tetris.Board.COLLISION.GROUND;
+                                    }
+                                }
+                            };
+                        </pre><p>&nbsp;</p>
+                        <p>Te na poslijetku postoje još dvije metode. Jedna je "checkCompleted" koja provjerava svaki
+                        red i provjerava dali je ispunjen. Ako je ispunjen tada se taj red čisti, a ostali redovi iznad
+                        se spuštaju dole. Druga metoda koja je ostala je "checkHeight" koja služi da se utvrdi
+                        najviša popunjena kockica na ploči. Ona služi kako bi se popunila traka sa desne strane igre,
+                        čisto informativno zbog igrača.</p>
+                        <p>&nbsp;</p>
+                        <p>to bi otprilike bilo sve, nadam se da je jasnije na koji način je igra napravljena.
+                        Na idućoj stranici se igra može i igrati, a na zadnjoj stranici može se skinuti izvorni kod
+                        i održana prezentacija.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="copyright" class="5grid-layout">
+    <section>
+        <p>&copy; Mario Jugurčić | 2015 RG | Design: <a href="http://templated.co/" target="_blank">TEMPLATED</a></p>
+    </section>
+</div>
+
+<!-- Finally, to actually run the highlighter, you need to include this JS on your page -->
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+/*
+	Affinity by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+*/
+
+/*********************************************************************************/
+/* Desktop (>= 480px)                                                            */
+/*********************************************************************************/
+
+/* Header */
+
+#header-wrapper {
+	background: url(images/img07.png) no-repeat center top;
+}
+
+#header {
+	overflow: hidden;
+	min-height: 205px;
+	position: relative;
+}
+
+/* Logo */
+
+#logo {
+	overflow: hidden;
+	padding: 30px 0 30px 0;
+}
+
+#logo h1 {
+	margin: 0;
+}
+
+#logo h1 a {
+	display: block;
+	letter-spacing: -1px;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: -1px -1px 0px #AC531B;
+	//text-transform: lowercase;
+	font-family: 'Allura', cursive;
+	font-size: 70pt;
+	font-weight: 200;
+	color: #FFFFFF;
+}
+
+#logo h2 {
+    display: block;
+    //letter-spacing: -1px;
+    text-align: center;
+    text-decoration: none;
+    //text-shadow: -1px -1px 0px #AC531B;
+    //text-transform: lowercase;
+    font-family: 'Allura', cursive;
+    font-size: 20pt;
+    margin-left: 300px;
+    font-weight: 200;
+    color: #FFFFFF;
+}
+
+/* Menu */
+
+#menu-wrapper {
+	background: url(images/img06.png) top right repeat;
+}
+
+#menu {
+	height: 60px;
+}
+
+#menu ul {
+	text-align: center;
+}
+
+#menu li {
+	display: inline-block;
+	padding: 0px 20px;
+	line-height: 60px;
+}
+
+#menu a {
+	display: block;
+	float: left;
+	margin-right: 2px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: 'Abel', sans-serif;
+	font-size: 13pt;
+	color: #FFFFFF;
+}
+
+#menu .current_page_item {
+	background: #00626B;
+	color: #FFFFFF;
+	box-shadow: inset 0px -2px 20px 0px rgba(0,0,0,0.2);
+}
+
+#menu .current_page_item a {
+	color: #FFFFFF;
+}
+
+#menu a:hover {
+}
+
+
+/* Page Wrapper */
+
+#page-wrapper {
+	overflow: hidden;
+	padding: 30px 0px;
+	background: #FFFFFF;
+}
+
+/* Banner */
+
+#banner {
+	overflow: hidden;
+	padding: 0px 30px 30px 30px;
+}
+
+#banner a img {
+	display: block;
+	width: 100%;
+}
+
+/* Content */
+
+#content {
+	padding: 0px 0px 0px 30px;
+}
+
+.twocolumn2 #content {
+	padding: 0px 30px 0px 0px;
+}
+
+.onecolumn #content {
+	padding: 0px 30px;
+}
+
+#content section {
+	margin-bottom: 30px;
+	border-bottom: 1px solid #E6E6E6;
+}
+
+#content section:last-child {
+	border-bottom: 0;
+}
+
+.onecolumn #content section {
+	border-bottom: none;
+}
+
+#content h2 {
+	padding: 0px 0px 40px 0px;
+	letter-spacing: -2px;
+	text-transform: uppercase;
+	font-size: 30pt;
+	color: #2A2A2A;
+}
+
+#content img {
+	border: 10px solid #F3F3F3;
+}
+
+#content a img {
+}
+
+#content .post {
+
+    position: relative;
+	padding: 0px 0px 40px 0px;
+}
+
+#content .img-alignleft {
+	float: left;
+	margin-right: 40px;
+}
+/* Sidebar1 */
+
+#sidebar1 {
+	padding: 0px 0px 0px 0px;
+}
+
+#sidebar1 section {
+	margin: 0px 0px 50px 0px;
+}
+
+#sidebar1 h2 {
+	height: 50px;
+	background: url(images/img01.png) repeat;
+	margin-bottom: 20px;
+	padding: 0px 0px 0px 20px;
+	line-height: 50px;
+	text-transform: uppercase;
+	font-size: 20pt;
+	color: #FFFFFF;
+}
+
+
+/* Sidebar2 */
+
+#sidebar2 {
+	padding: 0px 30px 0px 0px;
+}
+
+.twocolumn2 #sidebar2 {
+	padding: 0px 0px 0px 30px;
+}
+
+#sidebar2 h2 {
+	height: 50px;
+	background: url(images/img10.png) no-repeat right top;
+	margin-bottom: 20px;
+	padding: 0px 0px 0px 20px;
+	line-height: 50px;
+	text-transform: uppercase;
+	font-size: 20pt;
+	color: #FFFFFF;
+}
+
+#sidebar2 .sbox1 {
+	margin-bottom: 10px;
+}
+
+#sidebar2 .sbox2 img {
+    width: auto !important; /*override the width below*/
+    width: 100%;
+    max-width: 100%;
+}
+
+#three-container {
+    width: 100%;
+}
+
+#pieces-height {
+    width: 100%;
+}
+
+#okvir_bodova {
+    position: absolute;
+    height: 50px;
+    width: 250px;
+    background: url(images/img10.png) no-repeat right top;
+    top: 0px;
+    right: 50px;
+}
+
+#points {
+    position: absolute;
+    top: 10px;
+    width: 250px;
+    text-transform: uppercase;
+    font-size: 20pt;
+    right: -10px;
+    color: #ffffff;
+}
+
+#play_game {
+    position: absolute;
+    top: 40%;
+    left: 35%;
+}
+
+
+#game_container {
+    width: 100%;
+}
+
+.par_bijelo {
+    color: #ffffff;
+}
+
+#okvir_kontrola {
+    width: auto;
+    margin: auto auto;
+    border: dashed;
+    border-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    background-color: rgba(165, 82, 23, 0.9);
+}
+
+#brzinaPadanja {
+    position: absolute;
+    width: auto;
+    margin: 20px 20px;
+    //border: dashed;
+    border-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 5px 5px 5px 0px rgba(255, 255, 255, 0.3);
+    background-color: rgba(165, 82, 23, 0.9);
+    color: #ffffff;
+}
+
+#game_over {
+    display: none;
+
+    width: auto;
+    margin: auto auto;
+    border: dashed;
+    border-color: #ffffff;
+    padding: 50px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    background-color: rgba(165, 82, 23, 0.9);
+    color: #ffffff;
+}
+
+#three-container-iduci {
+    width: 100%;
+}
+
+#whiteOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.5);
+    //background-color: rgba(0,0,0,0.5);
+
+    display: none;
+}
+
+.pause {
+    position: fixed;
+    top: 40%;
+    left: 45%;
+    width: 150px;
+    height: 100px;
+    border: dashed;
+    border-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    background-color: rgba(86, 210, 231, 0.98);
+    color: #ffffff;
+    font-size: xx-large;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+}
+
+
+#sidebar2 .sbox2 {
+	margin-bottom: 50px;
+}
+
+#sidebar2 .sbox3 {
+}
+
+
+/** Footer Column Content */
+
+#footer-content {
+	overflow: hidden;
+	padding: 50px 0px 0px 0px;
+	text-shadow: 1px 1px 0px rgba(0,0,0, .3);
+	color: #F3F1EE;
+}
+
+#footer-content h2 {
+	padding: 0px 0px 40px 0px;
+	text-transform: uppercase;
+	font-size: 20pt;
+	color: #FFF;
+}
+
+#footer-content .imgleft {
+	float: left;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 30px;
+	border: 5px solid #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+

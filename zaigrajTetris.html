@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<!--
+	Affinity by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+
+    <title>3D Tetris</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <!--<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>-->
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="css/5grid/core.css"/>
+        <link rel="stylesheet" href="css/5grid/core-desktop.css"/>
+        <link rel="stylesheet" href="css/5grid/core-1200px.css"/>
+        <link rel="stylesheet" href="css/5grid/core-noscript.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/style-desktop.css"/>
+    </noscript>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none&amp;mobileUI.openerWidth=52"></script>
+    <!--[if IE 9]>
+    <link rel="stylesheet" href="css/style-ie9.css"/><![endif]-->
+
+</head>
+<body class="twocolumn2">
+<div id="wrapper">
+    <div id="header-wrapper">
+        <header id="header">
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="12u" id="logo"> <!-- Logo -->
+                        <h1><a href="#" class="mobileUI-site-name">3D Tetris</a></h1>
+
+                        <h2>Mario Jugurcic</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="12u" id="menu">
+                        <div id="menu-wrapper">
+                            <nav class="mobileUI-site-nav">
+                                <ul>
+                                    <li><a href="index.html">Početna</a></li>
+                                    <li><a href="izradaProjekta.html">Izrada projekta</a></li>
+                                    <li><a href="kratkeUpute.html">Kratke upute</a></li>
+                                    <li class="current_page_item"><a href="zaigrajTetris.html">Zaigraj 3D Tetris</a>
+                                    <li><a href="dokumentacija.html">Dokumentacija</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div id="page-wrapper" class="5grid-layout">
+        <div class="5grid-layout">
+            <div class="row">
+                <div class="12u">
+                    <div id="banner"><a href="#"><img src="images/pic01.jpg" alt=""></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="3u">
+                <div id="sidebar2">
+                    <section>
+                        <div class="sbox1">
+                            <h2>Sljedeci dio</h2>
+
+                            <div id="three-container-iduci"></div>
+
+
+                        </div>
+                        <div class="sbox2">
+                            <h2>Kontrole za igru</h2>
+                            <ul class="style1">
+                                <li><a>Strelice - gore/dole/lijevo/desno</a></li>
+                                <li><a>Space (razmaknica) - ubrzano spuštanje</a></li>
+                                <li><a>Pauza - P</a></li>
+                                <li><a>Rotacije - A/D, W/S, Q/E</a></li>
+                            </ul>
+                            <img src="images/orijentacije.png" alt="pojasnjenje rotacija"/>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="9u mobileUI-main-content">
+                <div id="content">
+                    <section>
+                        <div id="game_container" class="post">
+                            <h2>3D Tetris</h2>
+
+                            <div id="brzinaPadanja">
+                                <p id="speed">Speed: 1</p>
+                            </div>
+
+                            <table style="width: 100%">
+                                <tr>
+                                    <td style="width: 93%">
+                                        <div id="three-container"></div>
+                                    </td>
+                                    <td style="width: 7%; padding-left: 1%;">
+                                        <div id="pieces-height"></div>
+                                    </td>
+
+                                </tr>
+                            </table>
+
+
+                            <br style="clear:both;"/>
+
+                            <div id="play_game">
+                                <div id="okvir_kontrola">
+                                    <table id="table_controls">
+                                        <tr>
+                                            <td align="center">
+                                                <p class="par_bijelo">Veličina ploče:<br/>
+                                                <input type="radio" name="boardSize" value="4"> (4x4)<br>
+                                                <input type="radio" name="boardSize" value="6" checked="checked"> (6x6)<br>
+                                                <input type="radio" name="boardSize" value="8"> (8x8)<br></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <p class="button-style">
+                                                    <button id="play_button">Play!</button>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div id="game_over">
+                                    <table id="game_over1">
+                                        <tr>
+                                            <td align="center">
+                                                <h2>GAME OVER</h2>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <p id="overal_score">Vaši bodovi: </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div id="okvir_bodova">
+                                <div id="points">
+                                    POINTS: 0
+                                </div>
+                            </div>
+
+                            <div id="whiteOverlay">
+                                <div class="pause">Pauza</div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="copyright" class="5grid-layout">
+    <section>
+        <p>&copy; Mario Jugurčić | 2015 RG | Design: <a href="http://templated.co/" target="_blank">TEMPLATED</a></p>
+    </section>
+</div>
+
+<script type="text/javascript" src="js/tetris.js"></script>
+<script type="text/javascript" src="js/tetris.board.js"></script>
+<script type="text/javascript" src="js/tetris.block.js"></script>
+<script type="text/javascript" src="js/tetris.piecesHeight.js"></script>
+
+</body>
+</html>
